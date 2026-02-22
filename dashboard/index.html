@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Weekly Screening Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --bg: #f6f4ef;
+      --ink: #222222;
+      --accent: #0f766e;
+      --muted: #6b7280;
+      --card: #ffffff;
+      --border: #e4e2dd;
+    }
+    body {
+      margin: 0;
+      font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+      background: radial-gradient(circle at top, #fef7e8 0%, #f6f4ef 45%, #eef1f6 100%);
+      color: var(--ink);
+    }
+    header {
+      padding: 32px 24px 16px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      letter-spacing: 0.02em;
+    }
+    .sub {
+      color: var(--muted);
+      font-size: 14px;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 6px 14px rgba(15, 23, 42, 0.08);
+    }
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .card .value {
+      font-size: 22px;
+      font-weight: 700;
+    }
+    section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08);
+    }
+    section h2 {
+      margin: 0 0 16px;
+      font-size: 18px;
+    }
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .table th,
+    .table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+    }
+    .table th {
+      color: var(--muted);
+      font-weight: 600;
+      background: #f9f7f2;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    @media (max-width: 640px) {
+      h1 { font-size: 22px; }
+      section { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Weekly Screening Dashboard</h1>
+    <div class="sub">Generated at: 2026-02-23 00:17:08</div>
+  </header>
+  <main>
+    <div class="summary">
+      <div class="card">
+        <h3>Runs</h3>
+        <div class="value">2</div>
+      </div>
+      <div class="card">
+        <h3>Last run</h3>
+        <div class="value">2026-02-23</div>
+      </div>
+      <div class="card">
+        <h3>Last candidates</h3>
+        <div class="value">10</div>
+      </div>
+      <div class="card">
+        <h3>Last recommendations</h3>
+        <div class="value">84</div>
+      </div>
+    </div>
+
+    <section>
+      <h2>Weekly candidates trend</h2>
+      <canvas id="candidatesChart" height="120"></canvas>
+    </section>
+
+    <section>
+      <h2>Return summary</h2>
+      <canvas id="returnsChart" height="120"></canvas>
+    </section>
+
+    <section>
+      <h2>Grade performance (matured -)</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Grade</th>
+            <th>Count</th>
+            <th>Avg return</th>
+            <th>Median return</th>
+            <th>Win rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan='5'>No matured data</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Latest candidates</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Grade</th>
+            <th>Ticker</th>
+            <th>Name</th>
+            <th>Sector</th>
+            <th>Price</th>
+            <th>Target</th>
+            <th>Upside</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>B</td><td>9405.T</td><td>朝日放送グループホールディングス</td><td>情報・通信業</td><td>826.00</td><td>3256.56</td><td>294.26%</td><td>70.11</td></tr><tr><td>2</td><td>B</td><td>4341.T</td><td>西菱電機</td><td>サービス業</td><td>932.00</td><td>2303.72</td><td>147.18%</td><td>69.18</td></tr><tr><td>3</td><td>B</td><td>3856.T</td><td>Ａｂａｌａｎｃｅ</td><td>電気機器</td><td>489.00</td><td>5062.67</td><td>935.31%</td><td>65.87</td></tr><tr><td>4</td><td>B</td><td>4404.T</td><td>ミヨシ油脂</td><td>食料品</td><td>2305.00</td><td>11085.48</td><td>380.93%</td><td>65.75</td></tr><tr><td>5</td><td>B</td><td>6059.T</td><td>ウチヤマホールディングス</td><td>サービス業</td><td>391.00</td><td>1490.39</td><td>281.17%</td><td>65.40</td></tr><tr><td>6</td><td>B</td><td>3280.T</td><td>エストラスト</td><td>不動産業</td><td>1159.00</td><td>3322.54</td><td>186.67%</td><td>65.31</td></tr><tr><td>7</td><td>B</td><td>3768.T</td><td>リスクモンスター</td><td>情報・通信業</td><td>561.00</td><td>2392.61</td><td>326.49%</td><td>65.23</td></tr><tr><td>8</td><td>B</td><td>4222.T</td><td>児玉化学工業</td><td>化学</td><td>1411.00</td><td>13699.32</td><td>870.89%</td><td>64.57</td></tr><tr><td>9</td><td>B</td><td>3551.T</td><td>ダイニック</td><td>繊維製品</td><td>1230.00</td><td>3528.74</td><td>186.89%</td><td>64.25</td></tr><tr><td>10</td><td>B</td><td>4569.T</td><td>杏林製薬</td><td>医薬品</td><td>1687.00</td><td>3355.39</td><td>98.90%</td><td>63.50</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <footer>Stock Analytics Dashboard</footer>
+
+  <script>
+    const timeseries = [{"date": "2026-02-22", "total_candidates": 10, "total_recommendations": 84, "total_scored_stocks": 2578}, {"date": "2026-02-23", "total_candidates": 10, "total_recommendations": 84, "total_scored_stocks": 2578}];
+    const returnSummary = [{"horizon": "4w", "count": 0, "avg": null, "median": null, "win_rate": null}, {"horizon": "12w", "count": 0, "avg": null, "median": null, "win_rate": null}, {"horizon": "26w", "count": 0, "avg": null, "median": null, "win_rate": null}];
+
+    const candidateLabels = timeseries.map(item => item.date);
+    const candidateCounts = timeseries.map(item => item.total_candidates);
+    const recommendationCounts = timeseries.map(item => item.total_recommendations);
+
+    new Chart(document.getElementById('candidatesChart'), {
+      type: 'line',
+      data: {
+        labels: candidateLabels,
+        datasets: [
+          {
+            label: 'Candidates',
+            data: candidateCounts,
+            borderColor: '#0f766e',
+            backgroundColor: 'rgba(15, 118, 110, 0.2)',
+            tension: 0.3,
+            fill: true
+          },
+          {
+            label: 'Recommendations',
+            data: recommendationCounts,
+            borderColor: '#ea580c',
+            backgroundColor: 'rgba(234, 88, 12, 0.2)',
+            tension: 0.3,
+            fill: true
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'top' }
+        }
+      }
+    });
+
+    const returnLabels = returnSummary.map(item => item.horizon);
+    const avgReturns = returnSummary.map(item => item.avg);
+    const winRates = returnSummary.map(item => item.win_rate);
+
+    new Chart(document.getElementById('returnsChart'), {
+      type: 'bar',
+      data: {
+        labels: returnLabels,
+        datasets: [
+          {
+            label: 'Average return (%)',
+            data: avgReturns,
+            backgroundColor: 'rgba(30, 64, 175, 0.6)'
+          },
+          {
+            label: 'Win rate (%)',
+            data: winRates,
+            backgroundColor: 'rgba(16, 185, 129, 0.6)'
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'top' }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
